@@ -47,6 +47,8 @@
 #include "WorldPacket.h"
 #include <algorithm>
 
+#include "CFBGData.h"
+
 inline bool isNasty(uint8 c)
 {
     if (c == '\t')
@@ -366,10 +368,19 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
                     return;
                 }
 
-                if (GetPlayer()->GetTeam() != receiver->GetTeam() && !HasPermission(rbac::RBAC_PERM_TWO_SIDE_INTERACTION_CHAT))
+                if (!HasPermission(rbac::RBAC_PERM_TWO_SIDE_INTERACTION_CHAT))
                 {
-                    SendWrongFactionNotice();
-                    return;
+                    if (GetPlayer()->GetTeam() != receiver->GetTeam()) {
+                        SendWrongFactionNotice();
+                        return;
+                    }
+
+                    if (sWorld->getBoolConfig(CONFIG_CFBG_ENABLED)
+                        && GetPlayer()->cfbgdata->GetOTeam() != receiver->cfbgdata->GetOTeam()
+                        && GetPlayer()->GetBattleground() != receiver->GetBattleground()) {
+                        SendWrongFactionNotice();
+                        return;
+                    } 
                 }
             }
 

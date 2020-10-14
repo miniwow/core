@@ -19,6 +19,7 @@
 
 #include "Chat.h"
 #include "ChatCommand.h"
+#include "CFBGData.h"
 
 using namespace Trinity::ChatCommands;
 using namespace std::string_view_literals;
