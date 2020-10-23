@@ -1545,6 +1545,12 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                     }
                 }
                 break;
+            case SPELLFAMILY_WARRIOR:
+                // Mortal Strike duration nerf
+                if (GetId() == 47486)
+                    SetDuration(3500);
+
+                break;
         }
     }
     // mods at aura remove
