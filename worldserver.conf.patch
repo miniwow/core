@@ -1,0 +1,48 @@
+--- conf/worldserver.conf.dist	2020-10-22 13:29:28.000000000 +0200
++++ conf/worldserver.conf	2020-10-23 18:35:25.547829511 +0200
+@@ -383,7 +383,7 @@
+ #        Default:     1 - (Enabled)
+ #                     0 - (Disabled)
+ 
+-mmap.enablePathFinding = 1
++mmap.enablePathFinding = 0
+ 
+ #
+ #    vmap.enableLOS
+@@ -393,8 +393,8 @@
+ #                     1 - (Enabled, vmap.enableHeight)
+ #                     0 - (Disabled)
+ 
+-vmap.enableLOS    = 1
+-vmap.enableHeight = 1
++vmap.enableLOS    = 0
++vmap.enableHeight = 0
+ 
+ #
+ #    vmap.enableIndoorCheck
+@@ -2972,14 +2972,14 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-Ra.Enable = 0
++Ra.Enable = 1
+ 
+ #
+ #    Ra.IP
+ #        Description: Bind remote access to IP/hostname.
+ #        Default:     "0.0.0.0" - (Bind to all IPs on the system)
+ 
+-Ra.IP = "0.0.0.0"
++Ra.IP = "127.0.0.1"
+ 
+ #
+ #    Ra.Port
+@@ -3839,7 +3839,7 @@
+ 
+ Eluna.Enabled = true
+ Eluna.TraceBack = false
+-Eluna.ScriptPath = "lua_scripts"
++Eluna.ScriptPath = "/home/cdenis/miniwow/core/src/server/lua_scripts"
+ 
+ #
+ ###################################################################################################
