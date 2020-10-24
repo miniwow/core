@@ -1,0 +1,413 @@
+--- conf/worldserver.conf.dist	2020-10-24 15:09:00.000000000 +0200
++++ conf/worldserver.conf	2020-10-29 22:34:38.110330241 +0100
+@@ -383,7 +383,7 @@
+ #        Default:     1 - (Enabled)
+ #                     0 - (Disabled)
+ 
+-mmap.enablePathFinding = 1
++mmap.enablePathFinding = 0
+ 
+ #
+ #    vmap.enableLOS
+@@ -393,8 +393,8 @@
+ #                     1 - (Enabled, vmap.enableHeight)
+ #                     0 - (Disabled)
+ 
+-vmap.enableLOS    = 1
+-vmap.enableHeight = 1
++vmap.enableLOS    = 0
++vmap.enableHeight = 0
+ 
+ #
+ #    vmap.enableIndoorCheck
+@@ -477,7 +477,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enable)
+ 
+-CleanCharacterDB = 0
++CleanCharacterDB = 1
+ 
+ #
+ #    PersistentCharacterCleanFlags
+@@ -519,7 +519,7 @@
+ #        Example:     "./world.pid" - (Enabled)
+ #        Default:     ""            - (Disabled)
+ 
+-PidFile = ""
++PidFile = "./world.pid"
+ 
+ #
+ #    PacketLogFile
+@@ -547,7 +547,7 @@
+ #                     16 - (FFA_PVP, Free for all PvP mode like arena PvP in all zones except rest
+ #                          activated places and sanctuaries)
+ 
+-GameType = 0
++GameType = 1
+ 
+ #
+ #    RealmZone
+@@ -695,10 +695,10 @@
+ #                     1200000 - (120 Gold)
+ #                     2000000 - (200 Gold)
+ 
+-Guild.CharterCost = 1000
+-ArenaTeam.CharterCost.2v2 = 800000
+-ArenaTeam.CharterCost.3v3 = 1200000
+-ArenaTeam.CharterCost.5v5 = 2000000
++Guild.CharterCost = 0
++ArenaTeam.CharterCost.2v2 = 0
++ArenaTeam.CharterCost.3v3 = 0
++ArenaTeam.CharterCost.5v5 = 0
+ 
+ #
+ #    MaxWhoListReturns
+@@ -751,7 +751,7 @@
+ #                     256  - (Disabled, Warlock)
+ #                     1024 - (Disabled, Druid)
+ 
+-CharacterCreating.Disabled.ClassMask = 0
++CharacterCreating.Disabled.ClassMask = 32
+ 
+ #
+ #    CharactersPerAccount
+@@ -795,7 +795,7 @@
+ #                     1 - (Show intro only for first character of selected race)
+ #                     2 - (Disable intro for all classes)
+ 
+-SkipCinematics = 0
++SkipCinematics = 2
+ 
+ #
+ #    MaxPlayerLevel
+@@ -804,7 +804,7 @@
+ #        Range:       1-255
+ #        Default:     80
+ 
+-MaxPlayerLevel = 80
++MaxPlayerLevel = 60
+ 
+ #
+ #    MinDualSpecLevel
+@@ -819,7 +819,7 @@
+ #        Range:       1-MaxPlayerLevel
+ #        Default:     1
+ 
+-StartPlayerLevel = 1
++StartPlayerLevel = 60
+ 
+ #
+ #    StartDeathKnightPlayerLevel
+@@ -898,7 +898,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-AllFlightPaths = 0
++AllFlightPaths = 1
+ 
+ #
+ #    InstantFlightPaths
+@@ -949,7 +949,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-Instance.IgnoreRaid = 0
++Instance.IgnoreRaid = 1
+ 
+ #
+ #    Instance.ResetTimeHour
+@@ -1011,7 +1011,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-Quests.IgnoreRaid = 0
++Quests.IgnoreRaid = 1
+ 
+ #
+ #    Quests.IgnoreAutoAccept
+@@ -1096,7 +1096,7 @@
+ #        Range:       0-9
+ #        Default:     9
+ 
+-MinPetitionSigns = 9
++MinPetitionSigns = 0
+ 
+ #
+ #    MaxGroupXPDistance
+@@ -1180,7 +1180,7 @@
+ #        Default:     1 - (Recheck offhand slot weapon at unlearning a spell)
+ #                     0 - (Recheck offhand slot weapon only at zone update)
+ 
+-OffhandCheckAtSpellUnlearn = 1
++OffhandCheckAtSpellUnlearn = 0
+ 
+ #
+ #    ClientCacheVersion
+@@ -1212,7 +1212,7 @@
+ #        Example:     "Welcome to John's Server!@This server is proud to be powered by Trinity Core."
+ #        Default:     "Welcome to a Trinity Core server."
+ 
+-Motd = "Welcome to a Trinity Core server."
++Motd = "Welcome to MiniWoW."
+ 
+ #
+ #    Server.LoginInfo
+@@ -1471,7 +1471,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-Warden.Enabled = 0
++Warden.Enabled = 1
+ 
+ #
+ #    Warden.NumInjectionChecks
+@@ -1502,7 +1502,7 @@
+ #        Default:     30 - (30 Seconds)
+ #                     0  - (Send check as soon as possible)
+ 
+-Warden.ClientCheckHoldOff = 30
++Warden.ClientCheckHoldOff = 0
+ 
+ #
+ #    Warden.ClientCheckFailAction
+@@ -1513,7 +1513,7 @@
+ #                     1 - (Kick)
+ #                     2 - (Ban)
+ 
+-Warden.ClientCheckFailAction = 0
++Warden.ClientCheckFailAction = 2
+ 
+ #
+ #    Warden.BanDuration
+@@ -1522,7 +1522,7 @@
+ #        Default:     86400 - (24 hours)
+ #                     0     - (Permanent ban)
+ 
+-Warden.BanDuration = 86400
++Warden.BanDuration = 0
+ 
+ #
+ ###################################################################################################
+@@ -1535,7 +1535,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-AllowTwoSide.Interaction.Calendar = 0
++AllowTwoSide.Interaction.Calendar = 1
+ 
+ #
+ #    AllowTwoSide.Interaction.Channel
+@@ -1543,7 +1543,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-AllowTwoSide.Interaction.Channel = 0
++AllowTwoSide.Interaction.Channel = 1
+ 
+ #
+ #    AllowTwoSide.Interaction.Group
+@@ -1551,7 +1551,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-AllowTwoSide.Interaction.Group = 0
++AllowTwoSide.Interaction.Group = 1
+ 
+ #
+ #    AllowTwoSide.Interaction.Guild
+@@ -1559,7 +1559,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-AllowTwoSide.Interaction.Guild = 0
++AllowTwoSide.Interaction.Guild = 1
+ 
+ #
+ #    AllowTwoSide.Interaction.Auction
+@@ -1576,7 +1576,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-AllowTwoSide.Interaction.Auction = 0
++AllowTwoSide.Interaction.Auction = 1
+ 
+ #
+ #    AllowTwoSide.Trade
+@@ -1584,7 +1584,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-AllowTwoSide.Trade = 0
++AllowTwoSide.Trade = 1
+ 
+ #
+ #    TalentsInspecting
+@@ -2474,14 +2474,14 @@
+ #        Note:        On 3.3.5 client always shows log message "Your items have lost 10% durability"
+ #        Default:     10
+ 
+-DurabilityLoss.OnDeath = 10
++DurabilityLoss.OnDeath = 0
+ 
+ #
+ #    DurabilityLossChance.Damage
+ #        Description: Chance to lose durability on one equipped item from damage.
+ #        Default:     0.5 - (100/0.5 = 200, Each 200 damage one equipped item will use durability)
+ 
+-DurabilityLossChance.Damage = 0.5
++DurabilityLossChance.Damage = 0
+ 
+ #
+ #    DurabilityLossChance.Absorb
+@@ -2489,7 +2489,7 @@
+ #        Default:     0.5 - (100/0.5 = 200, Each 200 absorbed damage one equipped item will lose
+ #                           durability)
+ 
+-DurabilityLossChance.Absorb = 0.5
++DurabilityLossChance.Absorb = 0
+ 
+ #
+ #    DurabilityLossChance.Parry
+@@ -2497,7 +2497,7 @@
+ #        Default:     0.05 - (100/0.05 = 2000, Each 2000 parried damage the main weapon will lose
+ #                            durability)
+ 
+-DurabilityLossChance.Parry = 0.05
++DurabilityLossChance.Parry = 0
+ 
+ #
+ #    DurabilityLossChance.Block
+@@ -2505,7 +2505,7 @@
+ #        Default:     0.05 - (100/0.05 = 2000, Each 2000 blocked damage the shield will lose
+ #                            durability)
+ 
+-DurabilityLossChance.Block = 0.05
++DurabilityLossChance.Block = 0
+ 
+ #
+ #    Death.SicknessLevel
+@@ -2635,7 +2635,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-Battleground.StoreStatistics.Enable = 0
++Battleground.StoreStatistics.Enable = 1
+ 
+ #
+ #    Battleground.TrackDeserters.Enable
+@@ -2643,7 +2643,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-Battleground.TrackDeserters.Enable = 0
++Battleground.TrackDeserters.Enable = 1
+ 
+ #
+ #    Battleground.InvitationType
+@@ -2979,7 +2979,7 @@
+ #        Description: Bind remote access to IP/hostname.
+ #        Default:     "0.0.0.0" - (Bind to all IPs on the system)
+ 
+-Ra.IP = "0.0.0.0"
++Ra.IP = "127.0.0.1"
+ 
+ #
+ #    Ra.Port
+@@ -3116,7 +3116,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-PlayerStart.AllSpells = 0
++PlayerStart.AllSpells = 1
+ 
+ #
+ #    PlayerStart.MapsExplored
+@@ -3124,7 +3124,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-PlayerStart.MapsExplored = 0
++PlayerStart.MapsExplored = 1
+ 
+ #
+ #    HonorPointsAfterDuel
+@@ -3140,14 +3140,14 @@
+ #        Default:     0  - (Disabled)
+ #                     1  - (Enabled)
+ 
+-ResetDuelCooldowns = 0
++ResetDuelCooldowns = 1
+ 
+ #    ResetDuelHealthMana
+ #        Description: Reset health and mana before duel starts and restore them when duel ends.
+ #        Default:     0  - (Disabled)
+ #                     1  - (Enabled)
+ 
+-ResetDuelHealthMana = 0
++ResetDuelHealthMana = 1
+ 
+ #
+ #    AlwaysMaxWeaponSkill
+@@ -3156,7 +3156,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-AlwaysMaxWeaponSkill = 0
++AlwaysMaxWeaponSkill = 1
+ 
+ #
+ #    PvPToken.Enable
+@@ -3233,7 +3233,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-ShowBanInWorld = 0
++ShowBanInWorld = 1
+ 
+ #
+ #     PlayerStart.String
+@@ -3321,7 +3321,7 @@
+ #                     1 - (Enabled, character can not be renamed in Character Customization)
+ #
+ 
+-PreventRenameCharacterOnCustomization = 0
++PreventRenameCharacterOnCustomization = 1
+ 
+ #
+ ###################################################################################################
+@@ -3839,7 +3839,7 @@
+ 
+ Eluna.Enabled = true
+ Eluna.TraceBack = false
+-Eluna.ScriptPath = "lua_scripts"
++Eluna.ScriptPath = "/home/cdenis/miniwow/core/src/server/lua_scripts"
+ 
+ #
+ ###################################################################################################
+@@ -4012,7 +4012,7 @@
+ #        Default:     0 - (Disabled)
+ #                     1 - (Enabled)
+ 
+-Log.Async.Enable = 0
++Log.Async.Enable = 1
+ 
+ #
+ #    Allow.IP.Based.Action.Logging
+@@ -4037,7 +4037,7 @@
+ #                     0 - (Log only 'network')
+ #                     2 - (Log + kick + ban)
+ 
+-PacketSpoof.Policy = 1
++PacketSpoof.Policy = 2
+ 
+ #
+ #    PacketSpoof.BanMode
+@@ -4056,7 +4056,7 @@
+ #        Default:     86400 seconds (1 day)
+ #
+ 
+-PacketSpoof.BanDuration = 86400
++PacketSpoof.BanDuration = 0
+ 
+ #
+ ###################################################################################################
