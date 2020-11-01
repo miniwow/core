@@ -2692,16 +2692,19 @@ bool Player::IsMaxLevel() const
 
 void Player::InitTalentForLevel()
 {
+    /*
     uint8 level = GetLevel();
     // talents base at level diff (talents = level - 9 but some can be used already)
     if (level < 10)
     {
+        */
         // Remove all talent points
         if (m_usedTalentCount > 0)                           // Free any used talents
         {
             ResetTalents(true); /// @todo: Has to (collectively) be renamed to ResetTalents
             SetFreeTalentPoints(0);
         }
+        /*
     }
     else
     {
@@ -2725,6 +2728,7 @@ void Player::InitTalentForLevel()
         else
             SetFreeTalentPoints(talentPointsForLevel - m_usedTalentCount);
     }
+    */
 
     if (!GetSession()->PlayerLoading())
         SendTalentsInfoData(false);                         // update at client
