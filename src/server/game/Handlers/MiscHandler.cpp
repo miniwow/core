@@ -1580,3 +1580,8 @@ void WorldSession::HandleUpdateMissileTrajectory(WorldPacket& recvPacket)
         HandleMovementOpcodes(recvPacket);
     }
 }
+
+void WorldSession::HandleBatchedAction(WorldPacket& recv_data)
+{
+    _player->AddBatchAction(recv_data);
+}

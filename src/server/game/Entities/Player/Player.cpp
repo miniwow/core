@@ -18,6 +18,7 @@
 #include "Player.h"
 #include "AccountMgr.h"
 #include "AchievementMgr.h"
+#include "ActionBatchObject.h"
 #include "ArenaTeam.h"
 #include "ArenaTeamMgr.h"
 #include "Bag.h"
@@ -408,6 +409,7 @@ Player::Player(WorldSession* session): Unit(true)
 
     m_achievementMgr = new AchievementMgr(this);
     m_reputationMgr = new ReputationMgr(this);
+    m_actionBatchObjects = new ActionBatchObject(this);
 
     m_groupUpdateTimer.Reset(5000);
 }
@@ -443,6 +445,7 @@ Player::~Player()
     delete m_declinedname;
     delete m_runes;
     delete m_achievementMgr;
+    delete m_actionBatchObjects;
     delete m_reputationMgr;
     delete _cinematicMgr;
 
@@ -1355,6 +1358,12 @@ void Player::Update(uint32 p_time)
     if (IsHasDelayedTeleport() && IsAlive())
         TeleportTo(m_teleport_dest, m_teleport_options);
 
+    m_batchProcessingTimer.Update(p_time);
+    if (m_batchProcessingTimer.Passed())
+    {
+        m_actionBatchObjects->ProcessBatchedObjects();
+        m_batchProcessingTimer.Reset(150); // normal value should be 400
+    }
 }
 
 void Player::setDeathState(DeathState s)
@@ -1404,6 +1413,11 @@ void Player::setDeathState(DeathState s)
     if (IsAlive() && !cur)
         //clear aura case after resurrection by another way (spells will be applied before next death)
         SetUInt32Value(PLAYER_SELF_RES_SPELL, 0);
+}
+
+void Player::AddBatchAction(WorldPacket& packet)
+{
+    m_actionBatchObjects->CreateBatchObject(packet);
 }
 
 bool Player::BuildEnumData(PreparedQueryResult result, WorldPacket* data)

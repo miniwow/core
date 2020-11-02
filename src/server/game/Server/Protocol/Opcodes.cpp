@@ -430,7 +430,7 @@ void OpcodeTable::Initialize()
     /*0x12B*/ DEFINE_SERVER_OPCODE_HANDLER(SMSG_LEARNED_SPELL,             STATUS_NEVER);
     /*0x12C*/ DEFINE_SERVER_OPCODE_HANDLER(SMSG_SUPERCEDED_SPELL,          STATUS_NEVER);
     /*0x12D*/ DEFINE_HANDLER(CMSG_NEW_SPELL_SLOT,                          STATUS_NEVER,    PROCESS_INPLACE,      &WorldSession::Handle_NULL                     );
-    /*0x12E*/ DEFINE_HANDLER(CMSG_CAST_SPELL,                              STATUS_LOGGEDIN, PROCESS_THREADSAFE,   &WorldSession::HandleCastSpellOpcode           );
+    /*0x12E*/ DEFINE_HANDLER(CMSG_CAST_SPELL,                              STATUS_LOGGEDIN, PROCESS_THREADSAFE,   &WorldSession::HandleBatchedAction             );
     /*0x12F*/ DEFINE_HANDLER(CMSG_CANCEL_CAST,                             STATUS_LOGGEDIN, PROCESS_THREADSAFE,   &WorldSession::HandleCancelCastOpcode          );
     /*0x130*/ DEFINE_SERVER_OPCODE_HANDLER(SMSG_CAST_FAILED,               STATUS_NEVER);
     /*0x131*/ DEFINE_SERVER_OPCODE_HANDLER(SMSG_SPELL_START,               STATUS_NEVER);

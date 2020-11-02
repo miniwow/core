@@ -53,6 +53,7 @@ struct TrainerSpell;
 struct VendorItem;
 
 class AchievementMgr;
+class ActionBatchObject;
 class Bag;
 class Battleground;
 class CinematicMgr;
@@ -2172,6 +2173,7 @@ class TC_GAME_API Player : public Unit, public GridObject<Player>
         std::string GetCoordsMapAreaAndZoneString() const;
 
         std::string GetDebugInfo() const override;
+        void AddBatchAction(WorldPacket& packet);
 
     protected:
         // Gamemaster whisper whitelist
@@ -2501,6 +2503,10 @@ class TC_GAME_API Player : public Unit, public GridObject<Player>
         uint32 manaBeforeDuel;
 
         WorldLocation _corpseLocation;
+
+        // Action batching system
+        TimeTracker m_batchProcessingTimer;
+        ActionBatchObject* m_actionBatchObjects;
 };
 
 TC_GAME_API void AddItemsSetItem(Player* player, Item* item);

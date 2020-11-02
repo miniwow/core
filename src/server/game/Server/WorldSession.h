@@ -867,6 +867,7 @@ class TC_GAME_API WorldSession
         void HandleOpenItemOpcode(WorldPacket& recvPacket);
         void HandleOpenWrappedItemCallback(uint16 pos, ObjectGuid itemGuid, PreparedQueryResult result);
         void HandleCastSpellOpcode(WorldPacket& recvPacket);
+        void HandleBatchedAction(WorldPacket& recvPacket);
         void HandleCancelCastOpcode(WorldPackets::Spells::CancelCast& cancelCast);
         void HandleCancelAuraOpcode(WorldPackets::Spells::CancelAura& cancelAura);
         void HandleCancelGrowthAuraOpcode(WorldPackets::Spells::CancelGrowthAura& cancelGrowthAura);
